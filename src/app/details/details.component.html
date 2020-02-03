@@ -1,0 +1,98 @@
+<div class="redesign_manual_title section"> 
+  <div class="full-row-darker-blue-components" style="padding-top:80px;padding-bottom:32px;">
+      <div class="container">
+          <h1 *ngIf="title!=null">{{title}}</h1>
+          <h1 *ngIf="title==null">Photo Catalog</h1>
+      </div>
+  </div>   
+  </div>
+
+<div class="row full-row-white-components" style="padding: 32px 0px 32px 0px">
+  <div class="container">    
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <label><a  href="{{prevReferrer}}"> < Back to Results  </a></label>
+      </div>
+    </div>
+    <div class="row">        
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="download_img">
+          <div class="mrg-b-16">
+            <ngx-progressive-img-loader *ngFor="let img of posts" [height]="'450px'" [width]="'100%'" (imageLoaded)="onImgLoad($event)" (thumbnailLoaded)="onThumbLoad($event)"
+              [img]="img.high_res_image" [thumbnail]="img.low_res_image" [fallbackImg]="img.low_res_image">
+            </ngx-progressive-img-loader>
+          </div>
+          <div *ngIf="(butttonDisplay=='Yes')">
+                  <a href="{{jpeg_image}}" class="btn-default btn-lg primary-light-blue-btn">Download <i class="fa fa-download" aria-hidden="true"></i></a> 
+              <!--<a class="dropdown-toggle" title="Country Group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+              </a>              
+              <ul class="dropdown-menu">
+                  <li class="browse-name"><span><a href="{{tif_image}}">TIFF</a></span></li>
+                  <li class="browse-name"><span><a href="{{jpeg_image}}">JPEG</a></span></li>                 
+              </ul>
+              -->
+          </div>
+        </div>
+        <hr class="visible-xs">
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="detail-download-section">
+          <div class="header-detail">
+            <h4>Detail</h4>
+          </div>
+          <div class="main-detail">
+            <ul>
+              <li *ngIf="title!=null">
+
+                <label>Title:</label>
+                <p class="document-info">{{title}}</p>
+
+              </li>
+              <li *ngIf="caption!=null">
+                <label>Caption:</label>
+                <p class="document-info">{{caption}}</p>
+              </li>
+              <li>
+                <label>Creator:</label>
+                <p class="document-info" *ngIf="(creator!=null)">{{creator}}</p>
+                <p class="document-info" *ngIf="(creator==null)">N/A</p>
+              </li>
+              <li>
+                <label>Date Created:</label>
+                <p class="document-info" *ngIf="(itpccreated!='')">{{itpccreated |date:'MM/dd/yyyy'}}</p>
+                <p class="document-info" *ngIf="(itpccreated==null)">N/A</p>
+              </li>
+              <li *ngIf="copyright!=null">
+                <label>Creative Commons:</label>
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <img src="{{img_cc}}" class="img-responsive" alt="image">
+                </a>
+              </li>
+              <li *ngIf="projectid!=null">
+                <label>Project ID:</label>
+                <p class="document-info">{{projectid}}</p>
+              </li>
+              <li *ngIf="filename!=null">
+                <label>Filename:</label>
+                <p class="document-info">{{filename}}</p>
+              </li>
+              <li *ngIf="keywords!=null">
+                <label>Keywords:</label>
+                <p class="document-info">{{keywords | space}}</p>
+              </li>
+              <li *ngIf="rightsusageterms!=null">
+                <label>Usage terms:</label>
+                <p class="document-info">The records that were created by the staff of The World Bank are subject to the Bank’s copyright. Please
+                  refer to "
+                  <a href='http://archivesphotos.worldbank.org/en/about/archives/photo-gallery/terms-of-use'>Terms of Use</a>" for full copyright terms of use and disclaimers.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
