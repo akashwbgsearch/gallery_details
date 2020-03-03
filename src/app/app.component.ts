@@ -14,12 +14,15 @@ export class AppComponent {
     url: string;
     imgpath: string;
     detailPath:string;
+    loadingPath:string;
+    projPath:string;
     constructor(private element: ElementRef) {
         this.url = this.element.nativeElement.getAttribute('url');
         this.imgpath = this.element.nativeElement.getAttribute('imgpath');
         this.assetID = this.element.nativeElement.getAttribute('assetID');
         this.img_cc = this.element.nativeElement.getAttribute('img_cc');
         this.detailPath = this.element.nativeElement.getAttribute('detailPath');
-
+        this.loadingPath = this.element.nativeElement.getAttribute('loadingPath');
+        this.projPath = this.element.nativeElement.getAttribute('projPath');
     }
 }

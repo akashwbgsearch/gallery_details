@@ -8,7 +8,11 @@
   </div>
 
 <div class="row full-row-white-components" style="padding: 32px 0px 32px 0px">
+
   <div class="container">    
+      <div class="ajax-div" *ngIf="loading">    
+          <img src="{{loadingImageUrl}}" class="ajax-loader" alt="Loading"/>
+        </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <label><a  href="{{prevReferrer}}"> < Back to Results  </a></label>
@@ -18,7 +22,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="download_img">
           <div class="mrg-b-16">
-            <ngx-progressive-img-loader *ngFor="let img of posts" [height]="'450px'" [width]="'100%'" (imageLoaded)="onImgLoad($event)" (thumbnailLoaded)="onThumbLoad($event)"
+            <ngx-progressive-img-loader *ngFor="let img of posts" [height]="'auto'" [width]="'100%'" (imageLoaded)="onImgLoad($event)" (thumbnailLoaded)="onThumbLoad($event)"
               [img]="img.high_res_image" [thumbnail]="img.low_res_image" [fallbackImg]="img.low_res_image">
             </ngx-progressive-img-loader>
           </div>
@@ -61,7 +65,7 @@
                 <p class="document-info" *ngIf="(creator==null)">N/A</p>
               </li>
               <li>
-                <label>Date Created:</label>
+                <label>Date:</label>
                 <p class="document-info" *ngIf="(itpccreated!='')">{{itpccreated |date:'MM/dd/yyyy'}}</p>
                 <p class="document-info" *ngIf="(itpccreated==null)">N/A</p>
               </li>
@@ -73,7 +77,11 @@
               </li>
               <li *ngIf="projectid!=null">
                 <label>Project ID:</label>
-                <p class="document-info">{{projectid}}</p>
+                <p class="document-info">
+                  <a href="{{projPath}}{{projectid}}">
+                      {{projectid}}
+                  </a>
+                </p>
               </li>
               <li *ngIf="filename!=null">
                 <label>Filename:</label>
