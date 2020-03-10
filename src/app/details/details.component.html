@@ -77,10 +77,12 @@
               </li>
               <li *ngIf="projectid!=null">
                 <label>Project ID:</label>
-                <p class="document-info">
-                  <a href="{{projPath}}{{projectid}}">
-                      {{projectid}}
-                  </a>
+                <p class="document-info" >
+                  <span *ngFor="let projid of projArray">
+                      <a href="{{projPath}}{{projid}}">
+                          {{projid}}<br>
+                      </a>
+                  </span>
                 </p>
               </li>
               <li *ngIf="filename!=null">

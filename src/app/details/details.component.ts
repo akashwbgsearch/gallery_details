@@ -11,7 +11,7 @@ export class DetailsComponent {
     itpccreated: any; loadingImageUrl:any;butttonDisplay: any; id: any; caption: any; decade: any; country: any; title: any; topics: any; copyright: any; creator: any; projectid: any; filename: string;
     posts: any[] = []; region: any; imagepath: any; rightsusageterms: any; keywords: any; filedescription: any; @Input() assetID: string; detailApi: any; @Input() img_cc: string;
     high_res_image: any; low_res_image: any;jpeg_image:string; tif_image:string; 
-    prevReferrer:string;loading:boolean;
+    prevReferrer:string;loading:boolean;projArray:any=[];
 
     @Input() url: string;
     @Input() imgpath: string;
@@ -94,6 +94,20 @@ export class DetailsComponent {
                     this.caption = resources[key]['wbg_caption'];
                     this.creator = resources[key]['iptc_creator'];
                     this.projectid = resources[key]['wbg_project_id'];
+                    this.projArray = [];
+                    if(this.projectid!="" && this.projectid!=null){
+                        if(this.projectid.indexOf(',')>-1){
+                            let splitValues = this.projectid.split(',');
+                            let values="";
+                            splitValues.forEach(query => {
+                                this.projArray.push(query.trim());
+                            });
+                            
+                        }
+                        else{
+                            this.projArray.push(this.projectid);
+                        }
+                    }
                     this.itpccreated = resources[key]['iptc_date_created'];
                     if(this.itpccreated!=null && this.itpccreated.indexOf('Z')>-1){
                         this.itpccreated = this.itpccreated.substring(0,this.itpccreated.length-1);
